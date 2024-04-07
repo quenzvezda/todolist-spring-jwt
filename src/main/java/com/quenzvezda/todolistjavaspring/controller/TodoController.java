@@ -1,21 +1,24 @@
 package com.quenzvezda.todolistjavaspring.controller;
 
 import com.quenzvezda.todolistjavaspring.model.Todo;
+import com.quenzvezda.todolistjavaspring.payload.response.TodoResponse;
+import com.quenzvezda.todolistjavaspring.payload.response.UserTodoResponse;
 import com.quenzvezda.todolistjavaspring.service.TodoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/todolist")
+@AllArgsConstructor
 public class TodoController {
-    @Autowired
-    private TodoService todoService;
+    private final TodoService todoService;
 
     @GetMapping
-    public List<Todo> getAllTodo() {
+    public UserTodoResponse getAllTodo() {
         return todoService.getAllTodo();
     }
 

@@ -28,6 +28,10 @@ public class Todo {
     @Column(nullable = false) // Konfigurasi kolom database untuk updatedAt
     private LocalDateTime updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @PrePersist // Metode ini akan dipanggil sebelum entitas disimpan ke dalam database pertama kali
     protected void onCreate() {
         updatedAt = createdAt = LocalDateTime.now();
